@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "variables": {
+    "resourceGrpLocation": "UK South"
+  },
+  "parameters": {
+    "storageSku": {
+      "type": "string",
+      "allowedValues": ["Standard_LRS", "Standard_ZRS", "Standard_GZRS"],
+      "defaultValue": "Standard_LRS"
+    }
+  },
+  "resources": [
+    {
+      "name": "appstorage87431",
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2021-04-01",
+      "location": "[variables('resourceGrpLocation')]",
+      "kind": "StorageV2",
+      "sku": {
+        "name": "[parameters('storageSku')]"
+      }
+    }
+  ]
+}

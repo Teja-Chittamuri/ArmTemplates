@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "functions": [],
+  "variables": {},
+  "resources": [
+    // AppServicePlan
+    {
+      "name": "Telecomappplan0839",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2020-12-01",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "F1",
+        "capacity": 1
+      },
+      "properties": {
+        "name": "Telecomappplan0839"
+      }
+    },
+    // Web App
+    {
+      "name": "onlinetelecomapp21323",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2020-12-01",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', 'Telecomappplan0839')]"
+      ],
+      "properties": {
+        "name": "onlinetelecomapp21323",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'Telecomappplan0839')]"
+      }
+    }
+  ]
+}
